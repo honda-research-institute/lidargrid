@@ -94,5 +94,5 @@ if __name__ == "__main__":
     device = torch.device(args.device)
 
     outdir = os.path.dirname(args.checkpoint_path)
-    test = Test(device, os.path.join(outdir, "test"), args.checkpoint_path, NUSC_ROOT, NUSC_MINI_VERSION)
+    test = Test(device, os.path.join(outdir, "test"), args.checkpoint_path, NUSC_ROOT, NUSC_TEST_VERSION)
     test()
