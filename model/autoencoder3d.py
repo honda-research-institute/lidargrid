@@ -46,6 +46,9 @@ def deconv3x3(in_channels, out_channels, stride=2):
 def relu(inplace=True):
     return nn.ReLU(inplace=inplace)
 
+def bn3d(num_features):
+    return nn.BatchNorm3d(num_features=num_features)
+
 def norm(num_features):
     return nn.InstanceNorm3d(num_features=num_features)
 
@@ -93,10 +96,10 @@ class OccPredictor3d(nn.Module):
         self.block4 = ConvBlock(encoder_num_layers[3], encoder_num_filters[2], encoder_num_filters[3], max_pool=True)
 
         # decoder blocks
-        self.decode1 = deconv3x3(encoder_num_filters[3], encoder_num_filters[2])
-        self.decode2 = deconv3x3(encoder_num_filters[2], encoder_num_filters[1])
-        self.decode3 = deconv3x3(encoder_num_filters[1], encoder_num_filters[0])
-        self.decode4 = deconv3x3(encoder_num_filters[0], n_output)
+        self.decode1 = nn.Sequential(deconv3x3(encoder_num_filters[3], encoder_num_filters[2]), norm(encoder_num_filters[2]), relu())
+        self.decode2 = nn.Sequential(deconv3x3(encoder_num_filters[2], encoder_num_filters[1]), norm(encoder_num_filters[1]), relu())
+        self.decode3 = nn.Sequential(deconv3x3(encoder_num_filters[1], encoder_num_filters[0]), norm(encoder_num_filters[0]), relu())
+        self.decode4 = nn.Sequential(deconv3x3(encoder_num_filters[0], n_output), relu())
 
         # output linear
         self.linear = conv3x3(n_output, n_output)
