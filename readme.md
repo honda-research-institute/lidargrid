@@ -5,7 +5,7 @@
 
 ## Introduction
 
-This is the official Pytorch implementation of **LIDARGrid**, proposed in the paper [LiDARGrid: 3D Opacity Grid from LiDAR for Scene Forecasting]()
+This is the official Pytorch implementation of **LIDARGrid**, proposed in the paper [LiDARGrid: Self-supervised 3D Opacity Grid from LiDAR for Scene Forecasting](https://proceedings.mlr.press/v270/pan25a.html)
 
 We present LiDARGrid, a 3D opacity grid representation instantly derived from LiDAR points. Our method initiates a sparse grid with input LiDAR points, then it employs a novel volume densification procedure, which together with a differentiable optical model for volume rendering, generates a dense and continuous 3D opacity grid to represent the surrounding scene. Leveraging this representation, we perform scene forecasting and propose a 3D convolutional network backbone tailored to this task.
 
