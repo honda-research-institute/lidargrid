@@ -1,4 +1,4 @@
-# LiDARGrid: 3D Opacity Grid from LiDAR for Scene Forecasting
+# LiDARGrid: Self-supervised 3D Opacity Grid from LiDAR for Scene Forecasting
 
 <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-v1.11.0-red.svg?logo=PyTorch&style=for-the-badge" /></a> <a href="#"><img src="https://img.shields.io/badge/python-v3.7+-blue.svg?logo=python&style=for-the-badge" /></a>
  <img src="overview.png" style="zoom:100%">
@@ -109,9 +109,9 @@ If you find our work useful to your research, please consider citing:
 
 ```latex
 @article{pan2023lidargrid,
-  title={LiDARGrid: 3D Opacity Grid from LiDAR for Scene Forecasting},
+  title={LiDARGrid: Self-supervised 3D Opacity Grid from LiDAR for Scene Forecasting},
   author={Pan, Chuanyu and Xu, Aolin},
-  journal={arXiv preprint arXiv:???},
-  year={2023}
+  journal={The 8th Conference on Robot Learning},
+  year={2024}
 }
 ```
