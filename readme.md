@@ -108,7 +108,7 @@ You can also set `--no_visualize` to disable visualization and make testing much
 If you find our work useful to your research, please consider citing:
 
 ```latex
-@article{lidargrid_corl2024,
+@article{pan2024lidargrid,
   title={LiDARGrid: Self-supervised 3D Opacity Grid from LiDAR for Scene Forecasting},
   author={Pan, Chuanyu and Xu, Aolin},
   journal={The 8th Conference on Robot Learning},
