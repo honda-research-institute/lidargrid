@@ -1,0 +1,51 @@
+name: HRI Select Auto-Reviewer
+
+on:
+  workflow_dispatch:
+    inputs:
+      review_task:
+        description: 'Select which code analysis task to perform'
+        required: true
+        type: choice
+        options:
+          - 'crl_analysis.yaml'
+          - 'bug_search.yaml'
+          - 'generate_readme.yaml'
+        default: 'CRL Analysis'
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug Secret Presence
+        run: |
+          if [ -n "${{ secrets.HRI_SYSENG_CODECHECK_PAT }}" ]; then
+            echo "HRI_SYSENG_CODECHECK_PAT Secret is present"
+          else
+            echo "HRI_SYSENG_CODECHECK_PAT Secret is empty or not available"
+          fi
+          if [ -n "${{ secrets.HRI_SYSENG_ACCESS }}" ]; then
+            echo "HRI_SYSENG_ACCESS Secret is present"
+          else
+            echo "HRI_SYSENG_ACCESS Secret is empty or not available"
+          fi
+          if [ -n "${{ secrets.HRI_SYSENG_CODE_ANALYZER_DATABASE }}" ]; then
+            echo "HRI_SYSENG_CODE_ANALYZER_DATABASE Secret is present"
+          else
+            echo "HRI_SYSENG_CODE_ANALYZER_DATABASE Secret is empty or not available"
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+  run-auto-reviewer:
+    permissions:
+      contents: write
+    needs: quality-check
+    uses: honda-research-institute/auto-reviewer/.github/workflows/select-auto-reviewer.yaml@v0.2.1
+    with:
+      review_task: ${{ github.event.inputs.review_task }}
+    secrets:
+      HRI_SYSENG_CODECHECK_PAT: ${{ secrets.HRI_SYSENG_CODECHECK_PAT }}
+      HRI_SYSENG_ACCESS: ${{ secrets.HRI_SYSENG_ACCESS }}
+      HRI_SYSENG_CODE_ANALYZER_DATABASE: ${{ secrets.HRI_SYSENG_CODE_ANALYZER_DATABASE }}
