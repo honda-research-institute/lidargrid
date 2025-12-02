@@ -1,6 +1,9 @@
 name: HRI Select Auto-Reviewer
 
 on:
+  push:
+    branches:
+      - joshua-hri-patch-1
   workflow_dispatch:
     inputs:
       review_task:
