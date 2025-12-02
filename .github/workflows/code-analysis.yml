@@ -11,7 +11,7 @@ on:
           - 'crl_analysis.yaml'
           - 'bug_search.yaml'
           - 'generate_readme.yaml'
-        default: 'CRL Analysis'
+        default: 'crl_analysis.yaml'
 
 jobs:
   quality-check:
